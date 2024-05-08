@@ -10,6 +10,7 @@ const movieLabels = ["Director:", "Length (minutes):", "Seen:"];
 const tvSeriesLabels = ["Director:", "Episodes:", "Seen:"];
 const submitButton = document.querySelector("#submit-button");
 const newMediaForm = document.querySelector("#new-media-form");
+const availableIndices = []
 
 //Media Object (meant to be parent object)
 function Media(title) {
@@ -19,6 +20,13 @@ function Media(title) {
   this.person = document.createElement("p");
   this.info = document.createElement("div");
   this.toggle = document.createElement("button");
+  this.delete = document.createElement("button");
+  //delete function
+  this.delete.addEventListener("click", () => {
+    delete myLibrary[this.card.id];     //delete from library array
+    this.card.remove();                 //remove from dom
+    availableIndices.push(parseInt(this.card.id));    //add index to available index stack
+  })
 }
 
 //Book object (inherits from media)
@@ -58,11 +66,11 @@ function TVSeries(director, title, episodes, seen) {
 }
 
 //inserts card for new book
-Book.prototype.insert = function () {
+Book.prototype.insert = function (index) {
   //add class info
   this.card.classList.add("card");
   this.info.classList.add("info");
-  this.card.setAttribute("id", myLibrary.length - 1);
+  this.card.setAttribute("id", index);
   //create elements
   let image = document.createElement("img");
   let pages = document.createElement("p");
@@ -72,21 +80,23 @@ Book.prototype.insert = function () {
   pages.innerHTML = `Number of Pages: ${this.pages}`;
   this.toggle.innerHTML = this.read ? `Read` : `Not Read`;
   image.src = "images/green.jpg";
+  this.delete.innerHTML = "Delete";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(pages);
   this.info.appendChild(this.toggle);
+  this.info.appendChild(this.delete);
   this.card.appendChild(this.info);
   libraryDiv.appendChild(this.card);
 };
 //inserts card for new movie
-Movie.prototype.insert = function () {
+Movie.prototype.insert = function (index) {
   //add class info
   this.card.classList.add("card");
   this.info.classList.add("info");
-  this.card.setAttribute("id", myLibrary.length - 1);
+  this.card.setAttribute("id", index);
   //create elements
   let image = document.createElement("img");
   let length = document.createElement("p");
@@ -96,36 +106,40 @@ Movie.prototype.insert = function () {
   length.innerHTML = `Length (minutes): ${this.length}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
   image.src = "images/red.jpg";
+  this.delete.innerHTML = "Delete";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(length);
   this.info.appendChild(this.toggle);
+  this.info.appendChild(this.delete);
   this.card.appendChild(this.info);
   libraryDiv.appendChild(this.card);
 };
 //inserts card for new tv series
-TVSeries.prototype.insert = function () {
+TVSeries.prototype.insert = function (index) {
   //add class info
   this.card.classList.add("card");
   this.info.classList.add("info");
-  this.card.setAttribute("id", myLibrary.length - 1);
+  this.card.setAttribute("id", index);
   //create elements
   let image = document.createElement("img");
   let episodes = document.createElement("p");
-  image.src = "images/pastel.jpg";
   //add content
   this.header.innerHTML = this.title;
   this.person.innerHTML = `Director: ${this.director}`;
   episodes.innerHTML = `Number of Episodes: ${this.episodes}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
+  image.src = "images/pastel.jpg";
+  this.delete.innerHTML = "Delete";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(episodes);
   this.info.appendChild(this.toggle);
+  this.info.appendChild(this.delete);
   this.card.appendChild(this.info);
   libraryDiv.appendChild(this.card);
 };
@@ -150,8 +164,14 @@ function addItemToLibrary(type, author, title, pages, read) {
       item = new TVSeries(author, title, pages, read);
       break;
   }
-  myLibrary.push(item); //add to array
-  item.insert(); //add to dom
+  if(availableIndices.length !== 0) {     //insert into empty index if one exists in library array
+    let index = availableIndices.pop();
+    myLibrary[index] = item; //add to array
+    item.insert(index); //add to dom
+  } else {                                //otherwise add to end of library array
+    myLibrary.push(item); //add to array
+    item.insert(myLibrary.length - 1); //add to dom
+  }
 }
 
 addItemToLibrary(

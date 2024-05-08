@@ -17,7 +17,7 @@
       <h2>Sample Books</h2>
     </div>
     <dialog id="modal">
-      <form method="dialog">
+      <form method="dialog" id="new-media-form">
         <label for="type">Select Media Type</label>
         <select name="type" id="type">
           <option value="Book">Book</option>
@@ -29,10 +29,10 @@
         <label for="author">Author:</label>
         <input type="text" name="author" id="author" required/>
         <label for="pages">Number of Pages:</label>
-        <input type="text" name="pages" id="pages" required/>
+        <input type="number" name="pages" id="pages" min="0" required/>
         <label for="read">Read:</label>
         <input type="checkbox" name="read" id="read" />
-        <button id="submit-button">Add</button>
+        <input type="submit" value="Add" id="submit-button">
       </form>
     </dialog>
     <script src="app.js"></script>

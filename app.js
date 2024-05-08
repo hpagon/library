@@ -9,6 +9,7 @@ const bookLabels = ["Author:", "Number of Pages:", "Read:"];
 const movieLabels = ["Director:", "Length (minutes):", "Seen:"];
 const tvSeriesLabels = ["Director:", "Episodes:", "Seen:"];
 const submitButton = document.querySelector("#submit-button");
+const newMediaForm = document.querySelector("#new-media-form");
 
 //Media Object (meant to be parent object)
 function Media(title) {
@@ -196,13 +197,11 @@ selectMenu.addEventListener("change", () => {
 })
 
 // parse form input and creates new media element with given inputs
-submitButton.addEventListener("click", () => {
-  // let readOrNot = false;
-  // if(inputs[3].checked) {
-  //   readOrNot = true;
-  // }
-  // console.log(inputs[3].isChked);
-  // console.log(inputs[3].value);
-  // console.log(readOrNot);
+newMediaForm.addEventListener("submit", () => {
   addItemToLibrary(selectMenu.value, inputs[1].value, inputs[0].value, parseInt(inputs[2].value), inputs[3].checked);
 })
+
+//Clears form input any time the modal is closed
+modal.addEventListener("close", () => {
+  newMediaForm.reset();
+})  

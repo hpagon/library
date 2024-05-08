@@ -1,16 +1,73 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-family: 'Montserrat', sans-serif;
   /* border: 1px solid black; */
-  /* background-color: gray; */
 }
 
 body {
-  /* background-color: ; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.library {
+  width: 80%;
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
 }
 
 img {
-  height: 200px;
+  width: 100%;
+}
+
+.card {
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+h3 {
+  width: 90%;
+  /* display: flex; */
+  overflow: auto;
+  margin-left: 12px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+h3::-webkit-scrollbar {
+  display: none;
+}
+
+.info {
+  width: 100%;
+}
+
+dialog {
+  justify-self: center;
+  align-self: center;
+  border: none;
+  padding: 40px 20px;
+}
+
+form {
+  /* display: flex; */
 }
 
 /* Photo by <a href="https://unsplash.com/@codioful?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Codioful (Formerly Gradienta)</a> on <a href="https://unsplash.com/photos/a-blurry-image-of-a-multicolored-background-gEZkP23pLZ4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>

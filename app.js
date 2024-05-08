@@ -186,6 +186,21 @@ addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
 
 addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
 addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
+addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
+addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
+
+addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
+addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
+addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
+addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
+
+addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
+addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
+addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
+addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
+
+addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
+addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
 
 myLibrary.forEach((book) => {
   console.log(book);

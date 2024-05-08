@@ -1,5 +1,7 @@
 const myLibrary = [];
 const libraryDiv = document.querySelector(".library");
+const addButton = document.querySelector("#add-button");
+const modal = document.querySelector("#modal");
 
 //Media Object (meant to be parent object)
 function Media(title) {
@@ -49,6 +51,7 @@ Book.prototype.insert = function () {
     this.person.innerHTML = `Author: ${this.author}`;
     pages.innerHTML = `Number of Pages: ${this.pages}`;
     read.innerHTML = this.read ? `Read`:`Not Read`;
+    image.src = "images/green.jpg";
     //append elements
     this.card.appendChild(this.header);
     this.card.appendChild(image);
@@ -58,7 +61,7 @@ Book.prototype.insert = function () {
     this.card.appendChild(this.info);
     libraryDiv.appendChild(this.card);
 }
-
+//inserts card for new movie
 Movie.prototype.insert = function () {
     //add class info
     this.card.classList.add("card");
@@ -73,6 +76,7 @@ Movie.prototype.insert = function () {
     this.person.innerHTML = `Director: ${this.director}`;
     length.innerHTML = `Length (minutes): ${this.length}`;
     seen.innerHTML = this.seen ? `Seen`:`Not Seen`;
+    image.src = "images/red.jpg";
     //append elements
     this.card.appendChild(this.header);
     this.card.appendChild(image);
@@ -82,7 +86,7 @@ Movie.prototype.insert = function () {
     this.card.appendChild(this.info);
     libraryDiv.appendChild(this.card);
 }
-
+//inserts card for new tv series
 TVSeries.prototype.insert = function () {
     //add class info
     this.card.classList.add("card");
@@ -92,6 +96,7 @@ TVSeries.prototype.insert = function () {
     let image = document.createElement("img");
     let episodes = document.createElement("p");
     let seen = document.createElement("p");
+    image.src = "images/pastel.jpg";
     //add content
     this.header.innerHTML = this.title;
     this.person.innerHTML = `Director: ${this.director}`;
@@ -138,4 +143,8 @@ addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
 
 myLibrary.forEach(book => {
     console.log(book);
+})
+
+addButton.addEventListener("click", () => {
+    modal.showModal();
 })

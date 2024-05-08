@@ -17,6 +17,7 @@ function Media(title) {
   this.header = document.createElement("h3");
   this.person = document.createElement("p");
   this.info = document.createElement("div");
+  this.toggle = document.createElement("button");
 }
 
 //Book object (inherits from media)
@@ -25,6 +26,10 @@ function Book(author, title, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.toggle.addEventListener("click", () => {
+    this.read = this.read ? false:true;
+    this.toggle.innerHTML = this.read ? "Read":"Not Read";
+  })
 }
 
 //Movie object (inherits from media)
@@ -33,6 +38,10 @@ function Movie(director, title, length, seen) {
   this.director = director;
   this.length = length;
   this.seen = seen;
+  this.toggle.addEventListener("click", () => {
+    this.seen = this.seen ? false:true;
+    this.toggle.innerHTML = this.seen ? "Seen": "Not Seen";
+  })
 }
 
 //TVSeries object (inherits from media)
@@ -41,6 +50,10 @@ function TVSeries(director, title, episodes, seen) {
   this.director = director;
   this.episodes = episodes;
   this.seen = seen;
+  this.toggle.addEventListener("click", () => {
+    this.seen = this.seen ? false:true;
+    this.toggle.innerHTML = this.seen ? "Seen": "Not Seen";
+  })
 }
 
 //inserts card for new book
@@ -52,19 +65,18 @@ Book.prototype.insert = function () {
   //create elements
   let image = document.createElement("img");
   let pages = document.createElement("p");
-  let read = document.createElement("p");
   //add content
   this.header.innerHTML = this.title;
   this.person.innerHTML = `Author: ${this.author}`;
   pages.innerHTML = `Number of Pages: ${this.pages}`;
-  read.innerHTML = this.read ? `Read` : `Not Read`;
+  this.toggle.innerHTML = this.read ? `Read` : `Not Read`;
   image.src = "images/green.jpg";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(pages);
-  this.info.appendChild(read);
+  this.info.appendChild(this.toggle);
   this.card.appendChild(this.info);
   libraryDiv.appendChild(this.card);
 };
@@ -77,19 +89,18 @@ Movie.prototype.insert = function () {
   //create elements
   let image = document.createElement("img");
   let length = document.createElement("p");
-  let seen = document.createElement("p");
   //add content
   this.header.innerHTML = this.title;
   this.person.innerHTML = `Director: ${this.director}`;
   length.innerHTML = `Length (minutes): ${this.length}`;
-  seen.innerHTML = this.seen ? `Seen` : `Not Seen`;
+  this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
   image.src = "images/red.jpg";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(length);
-  this.info.appendChild(seen);
+  this.info.appendChild(this.toggle);
   this.card.appendChild(this.info);
   libraryDiv.appendChild(this.card);
 };
@@ -102,19 +113,18 @@ TVSeries.prototype.insert = function () {
   //create elements
   let image = document.createElement("img");
   let episodes = document.createElement("p");
-  let seen = document.createElement("p");
   image.src = "images/pastel.jpg";
   //add content
   this.header.innerHTML = this.title;
   this.person.innerHTML = `Director: ${this.director}`;
   episodes.innerHTML = `Number of Episodes: ${this.episodes}`;
-  seen.innerHTML = this.seen ? `Seen` : `Not Seen`;
+  this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(episodes);
-  this.info.appendChild(seen);
+  this.info.appendChild(this.toggle);
   this.card.appendChild(this.info);
   libraryDiv.appendChild(this.card);
 };

@@ -10,7 +10,7 @@ const movieLabels = ["Director:", "Length (minutes):", "Seen:"];
 const tvSeriesLabels = ["Director:", "Episodes:", "Seen:"];
 const submitButton = document.querySelector("#submit-button");
 const newMediaForm = document.querySelector("#new-media-form");
-const availableIndices = []
+const availableIndices = [];
 
 //Media Object (meant to be parent object)
 function Media(title) {
@@ -20,13 +20,14 @@ function Media(title) {
   this.person = document.createElement("p");
   this.info = document.createElement("div");
   this.toggle = document.createElement("button");
-  this.delete = document.createElement("button");
+  this.delete = document.createElement("img");
+  this.buttons = document.createElement("div");
   //delete function
   this.delete.addEventListener("click", () => {
-    delete myLibrary[this.card.id];     //delete from library array
-    this.card.remove();                 //remove from dom
-    availableIndices.push(parseInt(this.card.id));    //add index to available index stack
-  })
+    delete myLibrary[this.card.id]; //delete from library array
+    this.card.remove(); //remove from dom
+    availableIndices.push(parseInt(this.card.id)); //add index to available index stack
+  });
 }
 
 //Book object (inherits from media)
@@ -36,9 +37,10 @@ function Book(author, title, pages, read) {
   this.pages = pages;
   this.read = read;
   this.toggle.addEventListener("click", () => {
-    this.read = this.read ? false:true;
-    this.toggle.innerHTML = this.read ? "Read":"Not Read";
-  })
+    this.read = this.read ? false : true;
+    this.toggle.innerHTML = this.read ? "Read" : "Not Read";
+    this.toggle.style.backgroundColor = this.read ? "green": "#6C757D";
+  });
 }
 
 //Movie object (inherits from media)
@@ -48,9 +50,10 @@ function Movie(director, title, length, seen) {
   this.length = length;
   this.seen = seen;
   this.toggle.addEventListener("click", () => {
-    this.seen = this.seen ? false:true;
-    this.toggle.innerHTML = this.seen ? "Seen": "Not Seen";
-  })
+    this.seen = this.seen ? false : true;
+    this.toggle.innerHTML = this.seen ? "Seen" : "Not Seen";
+    this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
+  });
 }
 
 //TVSeries object (inherits from media)
@@ -60,9 +63,10 @@ function TVSeries(director, title, episodes, seen) {
   this.episodes = episodes;
   this.seen = seen;
   this.toggle.addEventListener("click", () => {
-    this.seen = this.seen ? false:true;
-    this.toggle.innerHTML = this.seen ? "Seen": "Not Seen";
-  })
+    this.seen = this.seen ? false : true;
+    this.toggle.innerHTML = this.seen ? "Seen" : "Not Seen";
+    this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
+  });
 }
 
 //inserts card for new book
@@ -71,6 +75,7 @@ Book.prototype.insert = function (index) {
   this.card.classList.add("card");
   this.info.classList.add("info");
   this.card.setAttribute("id", index);
+  this.buttons.classList.add("info-buttons");
   //create elements
   let image = document.createElement("img");
   let pages = document.createElement("p");
@@ -79,17 +84,19 @@ Book.prototype.insert = function (index) {
   this.person.innerHTML = `Author: ${this.author}`;
   pages.innerHTML = `Number of Pages: ${this.pages}`;
   this.toggle.innerHTML = this.read ? `Read` : `Not Read`;
+  this.toggle.style.backgroundColor = this.read ? "green": "#6C757D";
   image.src = "images/green.jpg";
-  this.delete.innerHTML = "Delete";
+  this.delete.src = "images/close.svg";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(pages);
-  this.info.appendChild(this.toggle);
-  this.info.appendChild(this.delete);
+  this.buttons.appendChild(this.toggle);
+  this.buttons.appendChild(this.delete);
+  this.info.appendChild(this.buttons);
   this.card.appendChild(this.info);
-  libraryDiv.appendChild(this.card);
+  libraryDiv.prepend(this.card);
 };
 //inserts card for new movie
 Movie.prototype.insert = function (index) {
@@ -97,6 +104,7 @@ Movie.prototype.insert = function (index) {
   this.card.classList.add("card");
   this.info.classList.add("info");
   this.card.setAttribute("id", index);
+  this.buttons.classList.add("info-buttons");
   //create elements
   let image = document.createElement("img");
   let length = document.createElement("p");
@@ -105,17 +113,19 @@ Movie.prototype.insert = function (index) {
   this.person.innerHTML = `Director: ${this.director}`;
   length.innerHTML = `Length (minutes): ${this.length}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
+  this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
   image.src = "images/red.jpg";
-  this.delete.innerHTML = "Delete";
+  this.delete.src = "images/close.svg";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(length);
-  this.info.appendChild(this.toggle);
-  this.info.appendChild(this.delete);
+  this.buttons.appendChild(this.toggle);
+  this.buttons.appendChild(this.delete);
+  this.info.appendChild(this.buttons);
   this.card.appendChild(this.info);
-  libraryDiv.appendChild(this.card);
+  libraryDiv.prepend(this.card);
 };
 //inserts card for new tv series
 TVSeries.prototype.insert = function (index) {
@@ -123,6 +133,7 @@ TVSeries.prototype.insert = function (index) {
   this.card.classList.add("card");
   this.info.classList.add("info");
   this.card.setAttribute("id", index);
+  this.buttons.classList.add("info-buttons");
   //create elements
   let image = document.createElement("img");
   let episodes = document.createElement("p");
@@ -131,17 +142,19 @@ TVSeries.prototype.insert = function (index) {
   this.person.innerHTML = `Director: ${this.director}`;
   episodes.innerHTML = `Number of Episodes: ${this.episodes}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
+  this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
   image.src = "images/pastel.jpg";
-  this.delete.innerHTML = "Delete";
+  this.delete.src = "images/close.svg";
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
   this.info.appendChild(this.person);
   this.info.appendChild(episodes);
-  this.info.appendChild(this.toggle);
-  this.info.appendChild(this.delete);
+  this.buttons.appendChild(this.toggle);
+  this.buttons.appendChild(this.delete);
+  this.info.appendChild(this.buttons);
   this.card.appendChild(this.info);
-  libraryDiv.appendChild(this.card);
+  libraryDiv.prepend(this.card);
 };
 // Link prototypes
 Object.setPrototypeOf(Book.prototype, Media.prototype);
@@ -164,11 +177,13 @@ function addItemToLibrary(type, author, title, pages, read) {
       item = new TVSeries(author, title, pages, read);
       break;
   }
-  if(availableIndices.length !== 0) {     //insert into empty index if one exists in library array
+  if (availableIndices.length !== 0) {
+    //insert into empty index if one exists in library array
     let index = availableIndices.pop();
     myLibrary[index] = item; //add to array
     item.insert(index); //add to dom
-  } else {                                //otherwise add to end of library array
+  } else {
+    //otherwise add to end of library array
     myLibrary.push(item); //add to array
     item.insert(myLibrary.length - 1); //add to dom
   }
@@ -189,11 +204,25 @@ addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
 addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
 addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
 
+addItemToLibrary(
+  "Book",
+  "George R.R. Martin",
+  "A Song of Ice and Fire",
+  786,
+  false
+);
 addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
 addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
 addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
 addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
 
+addItemToLibrary(
+  "Book",
+  "George R.R. Martin",
+  "A Song of Ice and Fire",
+  786,
+  false
+);
 addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
 addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
 addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
@@ -214,7 +243,9 @@ addButton.addEventListener("click", () => {
 //changes form form labels when the media type is changed in the modal form
 selectMenu.addEventListener("change", () => {
   let labelArray;
-  switch(selectMenu.value) {    //fetch correct labels
+  switch (
+    selectMenu.value //fetch correct labels
+  ) {
     case "Book":
       labelArray = bookLabels;
       break;
@@ -226,17 +257,23 @@ selectMenu.addEventListener("change", () => {
       break;
   }
   //update labels
-  for(let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i++) {
     labels[i + 2].innerHTML = labelArray[i];
   }
-})
+});
 
 // parse form input and creates new media element with given inputs
 newMediaForm.addEventListener("submit", () => {
-  addItemToLibrary(selectMenu.value, inputs[1].value, inputs[0].value, parseInt(inputs[2].value), inputs[3].checked);
-})
+  addItemToLibrary(
+    selectMenu.value,
+    inputs[1].value,
+    inputs[0].value,
+    parseInt(inputs[2].value),
+    inputs[3].checked
+  );
+});
 
 //Clears form input any time the modal is closed
 modal.addEventListener("close", () => {
   newMediaForm.reset();
-})  
+});

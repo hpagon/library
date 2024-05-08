@@ -2,6 +2,7 @@
   margin: 0px;
   padding: 0px;
   font-family: 'Montserrat', sans-serif;
+  /* background-color: gray; */
   /* border: 1px solid black; */
 }
 
@@ -9,16 +10,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #212529;
 }
 
 header {
   width: 80%;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  border-bottom: 1px solid lightgray;
+  background-color: #212529;
+  color: #F8F9FA;
 }
 
 .library {
+  margin-top: 90px;
+  margin-bottom: 30px;
   width: 80%;
   display: grid;
   gap: 25px;
@@ -32,20 +41,21 @@ img {
 
 .card {
   width: 300px;
-  height: 350px;
+  height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* flex-wrap: wrap; */
-  /* align-items: center; */
-  border: 1px solid lightgray;
+  /* border: 1px solid #F8F9FA; */
   border-radius: 5px;
+  background-color: #343A40;
+  color: #F8F9FA;
+  /* box-shadow: 0px 0px 1px #F8F9FA; */
 }
 
-h3 {
+.card h3 {
   width: 90%;
-  /* display: flex; */
   overflow: auto;
+  /* margin-top: 10px; */
   margin-left: 12px;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -56,7 +66,17 @@ h3::-webkit-scrollbar {
 }
 
 .info {
-  width: 100%;
+  width: 90%;
+  margin-left: 12px;
+}
+
+.info p, .info button {
+  margin-bottom: 7px;
+}
+
+.info .info-buttons {
+  display: flex;
+  justify-content: start;
 }
 
 dialog {
@@ -64,6 +84,29 @@ dialog {
   align-self: center;
   border: none;
   padding: 40px 20px;
+  background-color: #343A40;
+  color: #F8F9FA;
+}
+
+.info img {
+  height: 30px;
+  width: 30px;
+  margin-left: 60%;
+}
+
+header div button {
+  font-size: 16px;
+  /* height: 40px; */
+  width: 90px;
+}
+
+button {
+  background-color: #6C757D;
+  color: #F8F9FA;
+  border: none;
+  width: 80px;
+  height: 35px;
+  border-radius: 7px;
 }
 
 form {

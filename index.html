@@ -21,10 +21,11 @@
     </header>
     <div class="library"></div>
     <dialog id="modal">
+      <img src="images/close.svg" alt="close icons">
       <form method="dialog" id="new-media-form">
         <div>
           <label for="type">Select Media Type</label>
-          <select name="type" id="type">
+          <select name="type" id="type" autofocus>
             <option value="Book">Book</option>
             <option value="Movie">Movie</option>
             <option value="TVSeries">TV Series</option>
@@ -32,17 +33,17 @@
         </div>
         <div>
           <label for="title">Title:</label>
-          <input type="text" name="title" id="title" required />
+          <input type="text" name="title" id="title" required placeholder="Name of work"/>
         </div>
         <div>
           <label for="author">Author:</label>
-          <input type="text" name="author" id="author" required />
+          <input type="text" name="author" id="author" required placeholder="Name of person"/>
         </div>
         <div>
           <label for="pages">Number of Pages:</label>
-          <input type="number" name="pages" id="pages" min="0" required />
+          <input type="number" name="pages" id="pages" min="0" max="250000" required placeholder="Whole number"/>
         </div>
-        <div>
+        <div id="read-div">
           <label for="read">Read:</label>
           <input type="checkbox" name="read" id="read" />
         </div>

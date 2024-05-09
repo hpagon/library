@@ -7,10 +7,11 @@ const labels = document.querySelectorAll("label");
 const inputs = document.querySelectorAll("input");
 const bookLabels = ["Author:", "Number of Pages:", "Read:"];
 const movieLabels = ["Director:", "Length (minutes):", "Seen:"];
-const tvSeriesLabels = ["Director:", "Episodes:", "Seen:"];
+const tvSeriesLabels = ["Creator:", "Episodes:", "Seen:"];
 const submitButton = document.querySelector("#submit-button");
 const newMediaForm = document.querySelector("#new-media-form");
 const availableIndices = [];
+const formClose = document.querySelector("dialog img");
 
 //Media Object (meant to be parent object)
 function Media(title) {
@@ -299,3 +300,8 @@ newMediaForm.addEventListener("submit", () => {
 modal.addEventListener("close", () => {
   newMediaForm.reset();
 });
+
+//When x symbol in the modal is clicked, the modal closes
+formClose.addEventListener("click", () => {
+  modal.close();
+})

@@ -45,11 +45,9 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* border: 1px solid #F8F9FA; */
   border-radius: 5px;
   background-color: #343A40;
   color: #F8F9FA;
-  /* box-shadow: 0px 0px 1px #F8F9FA; */
 }
 
 .card h3 {
@@ -74,6 +72,10 @@ h3::-webkit-scrollbar {
   margin-bottom: 7px;
 }
 
+.info b {
+  font-weight: 600;
+}
+
 .info .info-buttons {
   display: flex;
   justify-content: start;
@@ -84,8 +86,17 @@ dialog {
   align-self: center;
   border: none;
   padding: 40px 20px;
-  background-color: #343A40;
+  background-color: #212529;
   color: #F8F9FA;
+  border-radius: 8px;
+}
+
+dialog img {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  left: 85%;
+  bottom: 90%;
 }
 
 .info img {
@@ -119,6 +130,56 @@ button {
   border-radius: 7px;
 }
 
+form {
+  height: 400px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form div {
+  width: 80%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+form #read-div {
+  flex-direction: row;
+  align-items: center;
+}
+
+form #read-div input {
+  width: 20px;
+  margin-left: 10%;
+}
+
+form div input, form div select {
+  border-radius: 8px;
+  height: 30px;
+  border: none;
+  background-color: #495057;
+  color: #F8F9FA;
+  padding-left: 10px;
+  outline: none;
+}
+
+form div #submit-button {
+  background-color: #495057;
+  color: #F8F9FA;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  height: 35px;
+}
+
+
+/* blurs background when dialog is open */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 @media (max-width: 400px) {
   header {
     width: 100%;
@@ -126,9 +187,6 @@ button {
   }
 }
 
-form {
-  /* display: flex; */
-}
 
 /* Photo by <a href="https://unsplash.com/@codioful?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Codioful (Formerly Gradienta)</a> on <a href="https://unsplash.com/photos/a-blurry-image-of-a-multicolored-background-gEZkP23pLZ4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
    */

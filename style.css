@@ -94,10 +94,20 @@ dialog {
   margin-left: 60%;
 }
 
+.info div {
+  display: flex;
+  color: #E9ECEF;
+}
+
+.info div p {
+  margin-left: 10px;
+}
+
 header div button {
   font-size: 16px;
   /* height: 40px; */
   width: 90px;
+  font-weight: 600;
 }
 
 button {
@@ -107,6 +117,13 @@ button {
   width: 80px;
   height: 35px;
   border-radius: 7px;
+}
+
+@media (max-width: 400px) {
+  header {
+    width: 100%;
+    justify-content: space-around;
+  }
 }
 
 form {

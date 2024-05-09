@@ -22,6 +22,10 @@ function Media(title) {
   this.toggle = document.createElement("button");
   this.delete = document.createElement("img");
   this.buttons = document.createElement("div");
+  this.personBolded = document.createElement("b");
+  this.personDiv = document.createElement("div");
+  this.lengthBolded = document.createElement("b");
+  this.lengthDiv = document.createElement("div");
   //delete function
   this.delete.addEventListener("click", () => {
     delete myLibrary[this.card.id]; //delete from library array
@@ -81,8 +85,10 @@ Book.prototype.insert = function (index) {
   let pages = document.createElement("p");
   //add content
   this.header.innerHTML = this.title;
-  this.person.innerHTML = `Author: ${this.author}`;
-  pages.innerHTML = `Number of Pages: ${this.pages}`;
+  this.personBolded.innerHTML = "Author: ";
+  this.person.innerHTML = ` ${this.author}`;
+  this.lengthBolded.innerHTML = "Number of Pages: ";
+  pages.innerHTML = ` ${this.pages}`;
   this.toggle.innerHTML = this.read ? `Read` : `Not Read`;
   this.toggle.style.backgroundColor = this.read ? "green": "#6C757D";
   image.src = "images/green.jpg";
@@ -90,8 +96,12 @@ Book.prototype.insert = function (index) {
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
-  this.info.appendChild(this.person);
-  this.info.appendChild(pages);
+  this.personDiv.appendChild(this.personBolded);
+  this.personDiv.appendChild(this.person);
+  this.info.appendChild(this.personDiv);
+  this.lengthDiv.appendChild(this.lengthBolded);
+  this.lengthDiv.appendChild(pages);
+  this.info.appendChild(this.lengthDiv);
   this.buttons.appendChild(this.toggle);
   this.buttons.appendChild(this.delete);
   this.info.appendChild(this.buttons);
@@ -110,8 +120,10 @@ Movie.prototype.insert = function (index) {
   let length = document.createElement("p");
   //add content
   this.header.innerHTML = this.title;
-  this.person.innerHTML = `Director: ${this.director}`;
-  length.innerHTML = `Length (minutes): ${this.length}`;
+  this.personBolded.innerHTML = "Director: ";
+  this.person.innerHTML = ` ${this.director}`;
+  this.lengthBolded.innerHTML = "Length(minutes): ";
+  length.innerHTML = ` ${this.length}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
   this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
   image.src = "images/red.jpg";
@@ -119,8 +131,12 @@ Movie.prototype.insert = function (index) {
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
-  this.info.appendChild(this.person);
-  this.info.appendChild(length);
+  this.personDiv.appendChild(this.personBolded);
+  this.personDiv.appendChild(this.person);
+  this.info.appendChild(this.personDiv);
+  this.lengthDiv.appendChild(this.lengthBolded);
+  this.lengthDiv.appendChild(length);
+  this.info.appendChild(this.lengthDiv);
   this.buttons.appendChild(this.toggle);
   this.buttons.appendChild(this.delete);
   this.info.appendChild(this.buttons);
@@ -139,8 +155,10 @@ TVSeries.prototype.insert = function (index) {
   let episodes = document.createElement("p");
   //add content
   this.header.innerHTML = this.title;
-  this.person.innerHTML = `Director: ${this.director}`;
-  episodes.innerHTML = `Number of Episodes: ${this.episodes}`;
+  this.personBolded.innerHTML = "Creator: ";
+  this.person.innerHTML = ` ${this.director}`;
+  this.lengthBolded.innerHTML = "Episodes: ";
+  episodes.innerHTML = ` ${this.episodes}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
   this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
   image.src = "images/pastel.jpg";
@@ -148,8 +166,12 @@ TVSeries.prototype.insert = function (index) {
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
-  this.info.appendChild(this.person);
-  this.info.appendChild(episodes);
+  this.personDiv.appendChild(this.personBolded);
+  this.personDiv.appendChild(this.person);
+  this.info.appendChild(this.personDiv);
+  this.lengthDiv.appendChild(this.lengthBolded);
+  this.lengthDiv.appendChild(episodes);
+  this.info.appendChild(this.lengthDiv);
   this.buttons.appendChild(this.toggle);
   this.buttons.appendChild(this.delete);
   this.info.appendChild(this.buttons);

@@ -10,18 +10,22 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="images/smiley.png" type="image/x-icon">
     <title>Library</title>
   </head>
   <body>
     <header>
-      <h1>Library</h1>
+      <div>
+        <img src="images/smiley.png" alt="smiley face icon">
+        <h1>Library</h1>
+      </div>
       <div class="controls">
         <button id="add-button">Add Item</button>
       </div>
     </header>
     <div class="library"></div>
     <dialog id="modal">
-      <img src="images/close.svg" alt="close icons">
+      <img src="images/close.svg" alt="close icons" />
       <form method="dialog" id="new-media-form">
         <div>
           <label for="type">Select Media Type</label>
@@ -33,15 +37,35 @@
         </div>
         <div>
           <label for="title">Title:</label>
-          <input type="text" name="title" id="title" required placeholder="Name of work"/>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            required
+            placeholder="Name of work"
+          />
         </div>
         <div>
           <label for="author">Author:</label>
-          <input type="text" name="author" id="author" required placeholder="Name of person"/>
+          <input
+            type="text"
+            name="author"
+            id="author"
+            required
+            placeholder="Name of person"
+          />
         </div>
         <div>
           <label for="pages">Number of Pages:</label>
-          <input type="number" name="pages" id="pages" min="0" max="250000" required placeholder="Whole number"/>
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            min="0"
+            max="250000"
+            required
+            placeholder="Whole number"
+          />
         </div>
         <div id="read-div">
           <label for="read">Read:</label>

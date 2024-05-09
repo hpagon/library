@@ -2,8 +2,6 @@
   margin: 0px;
   padding: 0px;
   font-family: 'Montserrat', sans-serif;
-  /* background-color: gray; */
-  /* border: 1px solid black; */
 }
 
 body {
@@ -23,6 +21,15 @@ header {
   border-bottom: 1px solid lightgray;
   background-color: #212529;
   color: #F8F9FA;
+  z-index: 1;
+}
+
+header div {
+  display: flex;
+}
+header div img {
+  height: 40px;
+  margin-right: 5px;
 }
 
 .library {
@@ -39,6 +46,7 @@ img {
   width: 100%;
 }
 
+/* card styles */
 .card {
   width: 300px;
   height: 380px;
@@ -48,12 +56,12 @@ img {
   border-radius: 5px;
   background-color: #343A40;
   color: #F8F9FA;
+  z-index: 0;
 }
 
 .card h3 {
   width: 90%;
   overflow: auto;
-  /* margin-top: 10px; */
   margin-left: 12px;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -70,6 +78,9 @@ h3::-webkit-scrollbar {
 
 .info p, .info button {
   margin-bottom: 7px;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .info b {
@@ -79,6 +90,11 @@ h3::-webkit-scrollbar {
 .info .info-buttons {
   display: flex;
   justify-content: start;
+}
+
+.info-buttons button, .info-buttons img {
+  position: relative;
+  transition: top ease 0.5s;
 }
 
 dialog {
@@ -130,6 +146,7 @@ button {
   border-radius: 7px;
 }
 
+/* form styles */
 form {
   height: 400px;
   width: 300px;
@@ -178,6 +195,23 @@ form div #submit-button {
 /* blurs background when dialog is open */
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card:hover {
+  scale: 1.01;
+}
+
+button:hover, .info-buttons button:hover, .info-buttons img:hover, dialog img:hover, dialog form #submit-button:hover {
+  cursor: pointer;
+  scale: 1.05;
+}
+
+button:active, .info-buttons button:active, .info-buttons img:active, dialog img:active, dialog form #submit-button:active {
+  scale: 1.1;
+}
+
+dialog img:hover, .info-buttons img:hover {
+  scale: 1.1;
 }
 
 @media (max-width: 400px) {

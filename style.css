@@ -46,10 +46,14 @@ img {
   width: 100%;
 }
 
+h2 {
+  color: #F8F9FA;
+}
+
 /* card styles */
 .card {
   width: 300px;
-  height: 380px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -83,6 +87,10 @@ h3::-webkit-scrollbar {
   scrollbar-width: none;  /* Firefox */
 }
 
+.info div {
+  margin-top: 3px;
+}
+
 .info b {
   font-weight: 600;
 }
@@ -98,8 +106,7 @@ h3::-webkit-scrollbar {
 }
 
 dialog {
-  justify-self: center;
-  align-self: center;
+  margin: auto;
   border: none;
   padding: 40px 20px;
   background-color: #212529;

@@ -12,6 +12,7 @@ const submitButton = document.querySelector("#submit-button");
 const newMediaForm = document.querySelector("#new-media-form");
 const availableIndices = [];
 const formClose = document.querySelector("dialog img");
+const emptyMessage = document.querySelector("#empty-message");
 
 //Media Object (meant to be parent object)
 function Media(title) {
@@ -27,50 +28,57 @@ function Media(title) {
   this.personDiv = document.createElement("div");
   this.lengthBolded = document.createElement("b");
   this.lengthDiv = document.createElement("div");
+  this.typeBolded = document.createElement("b");
+  this.typeDiv = document.createElement("div");
+  this.typeP = document.createElement("p");
   //delete function
   this.delete.addEventListener("click", () => {
     delete myLibrary[this.card.id]; //delete from library array
     this.card.remove(); //remove from dom
     availableIndices.push(parseInt(this.card.id)); //add index to available index stack
+    isEmpty();
   });
 }
 
 //Book object (inherits from media)
 function Book(author, title, pages, read) {
   Media.call(this, title);
+  this.type = "Book";
   this.author = author;
   this.pages = pages;
   this.read = read;
   this.toggle.addEventListener("click", () => {
     this.read = this.read ? false : true;
     this.toggle.innerHTML = this.read ? "Read" : "Not Read";
-    this.toggle.style.backgroundColor = this.read ? "green": "#6C757D";
+    this.toggle.style.backgroundColor = this.read ? "green" : "#6C757D";
   });
 }
 
 //Movie object (inherits from media)
 function Movie(director, title, length, seen) {
   Media.call(this, title);
+  this.type = "Movie";
   this.director = director;
   this.length = length;
   this.seen = seen;
   this.toggle.addEventListener("click", () => {
     this.seen = this.seen ? false : true;
     this.toggle.innerHTML = this.seen ? "Seen" : "Not Seen";
-    this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
+    this.toggle.style.backgroundColor = this.seen ? "green" : "#6C757D";
   });
 }
 
 //TVSeries object (inherits from media)
 function TVSeries(director, title, episodes, seen) {
   Media.call(this, title);
+  this.type = "TV Series";
   this.director = director;
   this.episodes = episodes;
   this.seen = seen;
   this.toggle.addEventListener("click", () => {
     this.seen = this.seen ? false : true;
     this.toggle.innerHTML = this.seen ? "Seen" : "Not Seen";
-    this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
+    this.toggle.style.backgroundColor = this.seen ? "green" : "#6C757D";
   });
 }
 
@@ -91,12 +99,17 @@ Book.prototype.insert = function (index) {
   this.lengthBolded.innerHTML = "Number of Pages: ";
   pages.innerHTML = ` ${this.pages}`;
   this.toggle.innerHTML = this.read ? `Read` : `Not Read`;
-  this.toggle.style.backgroundColor = this.read ? "green": "#6C757D";
+  this.toggle.style.backgroundColor = this.read ? "green" : "#6C757D";
   image.src = "images/green.jpg";
   this.delete.src = "images/close.svg";
+  this.typeBolded.innerHTML = "Type: ";
+  this.typeP.innerHTML = this.type;
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
+  this.typeDiv.appendChild(this.typeBolded);
+  this.typeDiv.appendChild(this.typeP);
+  this.info.appendChild(this.typeDiv);
   this.personDiv.appendChild(this.personBolded);
   this.personDiv.appendChild(this.person);
   this.info.appendChild(this.personDiv);
@@ -126,12 +139,17 @@ Movie.prototype.insert = function (index) {
   this.lengthBolded.innerHTML = "Length(minutes): ";
   length.innerHTML = ` ${this.length}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
-  this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
+  this.toggle.style.backgroundColor = this.seen ? "green" : "#6C757D";
   image.src = "images/red.jpg";
   this.delete.src = "images/close.svg";
+  this.typeBolded.innerHTML = this.type + ": ";
+  this.typeP.innerHTML = this.type;
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
+  this.typeDiv.appendChild(this.typeBolded);
+  this.typeDiv.appendChild(this.typeP);
+  this.info.appendChild(this.typeDiv);
   this.personDiv.appendChild(this.personBolded);
   this.personDiv.appendChild(this.person);
   this.info.appendChild(this.personDiv);
@@ -161,12 +179,17 @@ TVSeries.prototype.insert = function (index) {
   this.lengthBolded.innerHTML = "Episodes: ";
   episodes.innerHTML = ` ${this.episodes}`;
   this.toggle.innerHTML = this.seen ? `Seen` : `Not Seen`;
-  this.toggle.style.backgroundColor = this.seen ? "green": "#6C757D";
+  this.toggle.style.backgroundColor = this.seen ? "green" : "#6C757D";
   image.src = "images/pastel.jpg";
   this.delete.src = "images/close.svg";
+  this.typeBolded.innerHTML = this.type + ": ";
+  this.typeP.innerHTML = this.type;
   //append elements
   this.card.appendChild(this.header);
   this.card.appendChild(image);
+  this.typeDiv.appendChild(this.typeBolded);
+  this.typeDiv.appendChild(this.typeP);
+  this.info.appendChild(this.typeDiv);
   this.personDiv.appendChild(this.personBolded);
   this.personDiv.appendChild(this.person);
   this.info.appendChild(this.personDiv);
@@ -210,53 +233,8 @@ function addItemToLibrary(type, author, title, pages, read) {
     myLibrary.push(item); //add to array
     item.insert(myLibrary.length - 1); //add to dom
   }
+  isEmpty();
 }
-
-addItemToLibrary(
-  "Book",
-  "George R.R. Martin",
-  "A Song of Ice and Fire",
-  786,
-  false
-);
-addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
-addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
-
-addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
-addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
-addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
-addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
-
-addItemToLibrary(
-  "Book",
-  "George R.R. Martin",
-  "A Song of Ice and Fire",
-  786,
-  false
-);
-addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
-addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
-addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
-addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
-
-addItemToLibrary(
-  "Book",
-  "George R.R. Martin",
-  "A Song of Ice and Fire",
-  786,
-  false
-);
-addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
-addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
-addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 212, true);
-addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 230, true);
-
-addItemToLibrary("Movie", "Christopher Nolan", "Inception", 145, true);
-addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 55, true);
-
-myLibrary.forEach((book) => {
-  console.log(book);
-});
 
 //Shows modal when add button is clicked
 addButton.addEventListener("click", () => {
@@ -304,4 +282,32 @@ modal.addEventListener("close", () => {
 //When x symbol in the modal is clicked, the modal closes
 formClose.addEventListener("click", () => {
   modal.close();
-})
+});
+
+//checks if library is empty in order to display empty message
+function isEmpty() {
+  if (libraryDiv.childElementCount == 0) {
+    console.log("visible");
+    emptyMessage.style.visibility = "visible";
+  } else {
+    console.log("hidden");
+    emptyMessage.style.visibility = "hidden";
+  }
+}
+
+//add sample data
+addItemToLibrary("Book", "Ray Bradbury", "Fahrenheit 451", 156, true);
+addItemToLibrary("Book", "Rick Riordan", "Percy Jackson", 377, true);
+addItemToLibrary("Movie", "Christopher Nolan", "Inception", 148, true);
+addItemToLibrary("TVSeries", "Vince Gilligan", "Breaking Bad", 62, true);
+addItemToLibrary(
+  "Book",
+  "George R. R. Martin",
+  "A Game of Thrones",
+  694,
+  false
+);
+
+myLibrary.forEach((book) => {
+  console.log(book);
+});

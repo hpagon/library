@@ -287,10 +287,8 @@ formClose.addEventListener("click", () => {
 //checks if library is empty in order to display empty message
 function isEmpty() {
   if (libraryDiv.childElementCount == 0) {
-    console.log("visible");
     emptyMessage.style.visibility = "visible";
   } else {
-    console.log("hidden");
     emptyMessage.style.visibility = "hidden";
   }
 }
@@ -307,7 +305,3 @@ addItemToLibrary(
   694,
   false
 );
-
-myLibrary.forEach((book) => {
-  console.log(book);
-});
